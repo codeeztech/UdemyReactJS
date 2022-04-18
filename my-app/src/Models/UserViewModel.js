@@ -3,4 +3,5 @@ export default class UsersViewModel{
     Email;
     Contact;
     Website;
+    CompanyName;
 }
