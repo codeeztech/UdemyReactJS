@@ -16,7 +16,7 @@ const Contact = (props) => {
 					style={{marginTop:'80px'}}
 					key={card.id} 
 				>
-					<Link to={`/${card.title}`} className='ui header'>{card.title}</Link>
+					<Link to={`/card/${card.title}`} className='ui header'>{card.title}</Link>
 					<p>{card.body}</p>
 				</div>
 				)

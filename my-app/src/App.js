@@ -9,17 +9,20 @@ import Home from './components/home';
 import About from './components/about';
 import Contact from './components/contact';
 import Card from './components/card'
+import AppContext from './contexts/AppContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Navbar />
+      <div >
+      <Navbar />
+    
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
-          <Route path='/:user' component={Card}></Route>
+          <Route path='/card/:user' component={Card}></Route>
+          <Route exact path='/context' component={AppContext} ></Route>
         </Switch>
       </div>
     </BrowserRouter>

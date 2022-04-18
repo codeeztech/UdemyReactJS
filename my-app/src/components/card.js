@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import UsersViewModel from '../models/UserViewModel';
-import { addUser, deleteCard, fetchUser } from './actions/cardActions';
+import UsersViewModel from '../Models/UserViewModel';
+import { addUser, deleteCard, fetchUser, updateUser } from './actions/cardActions';
 
 class Card extends React.Component {
     constructor(props){
@@ -12,6 +12,7 @@ class Card extends React.Component {
     componentDidMount() {
         // let username = this.props.match.params.user
         // this.setState({user:username})
+        
         let id = this.props.card.id;
         this.props.fetchUser(id);
     }
@@ -23,34 +24,45 @@ class Card extends React.Component {
     }
 
     onClickAdd = () => {
-        this.UsersModel.Name = this.props.user.name;
-        this.UsersModel.Email = this.props.user.email;
-        this.UsersModel.Contact = this.props.user.phone;
-        this.UsersModel.Website = this.props.user.website;
+        this.UsersModel.Name = this.props.userInfo.name;
+        this.UsersModel.Email = this.props.userInfo.email;
+        this.UsersModel.Contact = this.props.userInfo.phone;
+        this.UsersModel.Website = this.props.userInfo.website;
 
         this.props.AddUser(this.UsersModel)
 
     }
+    onClickUpdate = () => {
 
+		this.UsersModel.Name = this.props.userInfo.name;
+		this.UsersModel.Email = 'srk.shahroz63@gmail.com'//this.props.userInfo.email;
+		this.UsersModel.Contact = this.props.userInfo.contact;
+		this.UsersModel.Website = this.props.userInfo.website;
+
+		this.props.updateUser(this.UsersModel)
+		
+		console.log("onClickAdd: "+JSON.stringify(this.props.UserList))
+	}
     render() {
-        const { user } = this.props;
-        console.log(user);
+        const { userInfo } = this.props;
+       // console.log(userInfo);
        // const {users} = this.props;
         
               return (
                     <div
                         className='ui raised very padded text container segment'
                         style={{ marginTop: '80px' }}
-                        key={user.name}
+                        key={userInfo.name}
                     >
-                        <h3 className='ui header'>{user.username}</h3>
-                        Name: <p>{user.name}</p>
-                        Email: <p>{user.email}</p>
-                        Phone: <p>{user.phone}</p>
-                        Website: <p>{user.website}</p>
+                        <h3 className='ui header'>{userInfo.username}</h3>
+                        Name: <p>{userInfo.name}</p>
+                        Email: <p>{userInfo.email}</p>
+                        Phone: <p>{userInfo.phone}</p>
+                        Website: <p>{userInfo.website}</p>
                         {/* Company Name: <p>{user.company.name}</p>
                         Address: <p>{user.address.street}</p> */}
                         <button className='ui right floated button' onClick={this.onButtonClick}>Delete</button>
+                        <button className='ui primary right floated button' onClick={this.onClickUpdate}>Update</button>
                         <button className='ui right floated button' onClick={this.onClickAdd}>Add</button>
                     </div>
                 )
@@ -84,7 +96,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         card: state.cards.find((card) => card.title === username),
        //users: state.users
-       user: state.users
+       userInfo: state.users
     }
 }
 
@@ -92,7 +104,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteCard: (id) => { dispatch(deleteCard(id)) },
         fetchUser: (id) => { dispatch(fetchUser(id)) },
-        AddUser : (UsersViewModel) => {dispatch(addUser(UsersViewModel))}
+        AddUser : (UserViewModel) => {dispatch(addUser(UserViewModel))},
+        updateUser: (UserViewModel) => { dispatch(updateUser(UserViewModel)) }
     }
 }
 
