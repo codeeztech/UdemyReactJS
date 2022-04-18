@@ -14,3 +14,4 @@ export const fetchUser =(id) =>{
         .then(({data}) => console.log(data))
     }
 }
+
