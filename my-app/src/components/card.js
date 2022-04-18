@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { deleteCard, fetchUser } from './actions/cardActions';
+import UsersViewModel from '../models/UserViewModel';
+import { addUser, deleteCard, fetchUser } from './actions/cardActions';
 
 class Card extends React.Component {
-    //state = { user: '' }
+    constructor(props){
+        super(props)
+        this.UsersModel = new UsersViewModel();
+    }
 
     componentDidMount() {
         // let username = this.props.match.params.user
@@ -16,6 +20,16 @@ class Card extends React.Component {
         let id = this.props.card.id;
         this.props.deleteCard(id);
         this.props.history.push('/contact')
+    }
+
+    onClickAdd = () => {
+        this.UsersModel.Name = this.props.user.name;
+        this.UsersModel.Email = this.props.user.email;
+        this.UsersModel.Contact = this.props.user.phone;
+        this.UsersModel.Website = this.props.user.website;
+
+        this.props.AddUser(this.UsersModel)
+
     }
 
     render() {
@@ -34,9 +48,10 @@ class Card extends React.Component {
                         Email: <p>{user.email}</p>
                         Phone: <p>{user.phone}</p>
                         Website: <p>{user.website}</p>
-                        Company Name: <p>{user.company.name}</p>
-                        Address: <p>{user.address.street}</p>
+                        {/* Company Name: <p>{user.company.name}</p>
+                        Address: <p>{user.address.street}</p> */}
                         <button className='ui right floated button' onClick={this.onButtonClick}>Delete</button>
+                        <button className='ui right floated button' onClick={this.onClickAdd}>Add</button>
                     </div>
                 )
 
@@ -76,7 +91,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteCard: (id) => { dispatch(deleteCard(id)) },
-        fetchUser: (id) => { dispatch(fetchUser(id)) }
+        fetchUser: (id) => { dispatch(fetchUser(id)) },
+        AddUser : (UsersViewModel) => {dispatch(addUser(UsersViewModel))}
     }
 }
 

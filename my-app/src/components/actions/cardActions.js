@@ -15,3 +15,10 @@ export const fetchUser =(id) =>{
     }
 }
 
+export const addUser =(UserViewModel) =>{
+    return (dispatch) =>{
+        console.log('user view model (Action): '+ JSON.stringify(UserViewModel))
+        dispatch({"type":"ADD_USER","payload":UserViewModel})
+    }
+}
+
