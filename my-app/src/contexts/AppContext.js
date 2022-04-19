@@ -6,7 +6,7 @@ import ThemeContextProvider from './ThemeContext';
 
 function AppContext() {
     return (
-        <div className='App'>
+        <div className='ui raised very padded text container segment'>
             <ThemeContextProvider>
                 <NavbarContext></NavbarContext>
                 <TodoList></TodoList>

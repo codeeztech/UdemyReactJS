@@ -28,7 +28,7 @@ function rootreducer(state = initialState, action) {
         case 'ADD_USER':
 
             console.log('user payload (root Reducer): ' + JSON.stringify(action.payload))
-            console.log('addedUserList (root Reducer): ' + JSON.stringify(state.addedUserList))
+            console.log('ADD: addedUserList (root Reducer): ' + JSON.stringify(state.addedUserList))
             return {
                 ...state,
                 addedUserList: [...state.addedUserList, action.payload]
@@ -36,11 +36,16 @@ function rootreducer(state = initialState, action) {
         case 'UPDATE_USER':
 
             console.log("Update Card(rootRecducer): " + JSON.stringify(action.Payload));
-
+            console.log('UPDATE: addedUserList (root Reducer): ' + JSON.stringify(state.addedUserList))
+            const index = state.addedUserList.findIndex(user => user.Id !==  action.payload);
+            console.log("index: "+index)
+            const newArray = [...state.addedUserList]; //making a new array
+            console.log("newArray: "+ JSON.stringify(newArray))
+            newArray[index].completed = true//changing value in the new array
+            console.log("changing newArray: "+ JSON.stringify(newArray[index]))
             return {
                 ...state,
-                addedUserList: [...state.addedUserList, action.Payload]
-
+                addedUserList: newArray
             }
         default:
             return state;

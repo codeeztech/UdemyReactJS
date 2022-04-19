@@ -24,6 +24,7 @@ class Card extends React.Component {
     }
 
     onClickAdd = () => {
+        this.UsersModel.Id = this.props.userInfo.id;
         this.UsersModel.Name = this.props.userInfo.name;
         this.UsersModel.Email = this.props.userInfo.email;
         this.UsersModel.Contact = this.props.userInfo.phone;
@@ -33,7 +34,7 @@ class Card extends React.Component {
 
     }
     onClickUpdate = () => {
-
+        this.UsersModel.Id = this.props.userInfo.id;
 		this.UsersModel.Name = this.props.userInfo.name;
 		this.UsersModel.Email = 'srk.shahroz63@gmail.com'//this.props.userInfo.email;
 		this.UsersModel.Contact = this.props.userInfo.contact;
@@ -55,6 +56,7 @@ class Card extends React.Component {
                         key={userInfo.name}
                     >
                         <h3 className='ui header'>{userInfo.username}</h3>
+                        UserID: <p>{userInfo.id}</p>
                         Name: <p>{userInfo.name}</p>
                         Email: <p>{userInfo.email}</p>
                         Phone: <p>{userInfo.phone}</p>
