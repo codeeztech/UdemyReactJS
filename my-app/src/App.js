@@ -10,6 +10,7 @@ import About from './components/about';
 import Contact from './components/contact';
 import Card from './components/card'
 import AppContext from './contexts/AppContext';
+import ToDoList from './components/hooks/ToDoList';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/contact' component={Contact} />
           <Route path='/card/:user' component={Card}></Route>
           <Route exact path='/context' component={AppContext} ></Route>
+          <Route exact path='/hooks' component={ToDoList} ></Route>
         </Switch>
       </div>
     </BrowserRouter>
