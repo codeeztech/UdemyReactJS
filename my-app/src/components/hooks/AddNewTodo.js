@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 
+
 const AddNewTodo = ({ fnAddTodo }) => {
 
     const [todos, setTodo] = useState('');
@@ -11,13 +12,15 @@ const AddNewTodo = ({ fnAddTodo }) => {
         fnAddTodo(todos);
       //  setTodo('');
     }
+    const inputFocus = React.createRef();
 
+   
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='Todo'>Add New Todo</label>
 
-                <input type='text' id='newTodo' values={todos} onChange={e => setTodo(e.target.value)}></input>
+                <input type='text' id='newTodo' values={todos} onChange={e => setTodo(e.target.value)} ref={inputFocus}></input>
                 <input type='submit'></input>
             </form>
 

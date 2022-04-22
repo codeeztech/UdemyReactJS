@@ -3,10 +3,10 @@ import { ThemeContext } from '../contexts/ThemeContext'
 
  const TodoList =  () => {
     console.log("TodoList:" + JSON.stringify(useContext(ThemeContext)))
-    const { isDarkTheme, lightTheme, darkTheme, changeTheme } = useContext(ThemeContext);
-    const theme = isDarkTheme ? darkTheme : lightTheme;
+    const { theme,changeTheme } = useContext(ThemeContext);
+    const themes = theme.isDarkTheme ? theme.darkTheme : theme.lightTheme;
         return (
-            <div style={{ background: theme.background, color: theme.text, height: '140px' ,textAlign: 'center'}}>
+            <div style={{ background: themes.background, color: themes.text, height: '140px' ,textAlign: 'center'}}>
                 <p className='item'>Plan the family trip</p>
                 <p className='item'>Go for shopping for dinner</p>
                 <p className='item'>Go for a walk</p>
