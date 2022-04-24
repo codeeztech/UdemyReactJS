@@ -20,15 +20,26 @@ const ThemeContextProvider = ({ children }) => {
 	const [theme,setTheme] = useState(initialTheme)
 
 
-	// useEffect(() => {
-	// 	setTheme(theme,!theme.isDarkTheme);
-	// 	console.log("Theme context", theme);
-	//   }, [theme]);
+	useEffect(() => {
+		// setTheme((prevState) =>({
+		// 	...prevState, 
+		// 	'isDarkTheme': !theme.isDarkTheme	,
+		// 	'lightTheme':{
+		// 		'text':'#444'
+		// 	}
+		// }));
+	  }, [theme]);
 
 	
 
 	const changeTheme = () => {
-		setTheme(theme, !theme.isDarkTheme)
+		setTheme((prevState) =>({
+			...prevState, 
+			'isDarkTheme': !theme.isDarkTheme	,
+			'lightTheme':{
+				'text':'#444'
+			}
+		}));
 	}
 
 
