@@ -11,6 +11,8 @@ import Contact from './components/contact';
 import Card from './components/card'
 import AppContext from './contexts/AppContext';
 import ToDoList from './components/hooks/ToDoList';
+import HomepageLayout from './components/homepage';
+import LandingPage from './components/landingpage';
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
       <Navbar />
     
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={LandingPage} />
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/card/:user' component={Card}></Route>
